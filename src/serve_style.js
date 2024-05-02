@@ -23,23 +23,23 @@ export const serve_style = {
         return res.sendStatus(404);
       }
       const styleJSON_ = clone(item.styleJSON);
-      for (const name of Object.keys(styleJSON_.sources)) {
-        const source = styleJSON_.sources[name];
-        source.url = fixUrl(req, source.url, item.publicUrl);
-      }
-      // mapbox-gl-js viewer cannot handle sprite urls with query
-      if (styleJSON_.sprite) {
-        if (Array.isArray(styleJSON_.sprite)) {
-          styleJSON_.sprite.forEach((spriteItem) => {
-            spriteItem.url = fixUrl(req, spriteItem.url, item.publicUrl);
-          });
-        } else {
-          styleJSON_.sprite = fixUrl(req, styleJSON_.sprite, item.publicUrl);
-        }
-      }
-      if (styleJSON_.glyphs) {
-        styleJSON_.glyphs = fixUrl(req, styleJSON_.glyphs, item.publicUrl);
-      }
+      // for (const name of Object.keys(styleJSON_.sources)) {
+      //   const source = styleJSON_.sources[name];
+      //   source.url = fixUrl(req, source.url, item.publicUrl);
+      // }
+      // // mapbox-gl-js viewer cannot handle sprite urls with query
+      // if (styleJSON_.sprite) {
+      //   if (Array.isArray(styleJSON_.sprite)) {
+      //     styleJSON_.sprite.forEach((spriteItem) => {
+      //       spriteItem.url = fixUrl(req, spriteItem.url, item.publicUrl);
+      //     });
+      //   } else {
+      //     styleJSON_.sprite = fixUrl(req, styleJSON_.sprite, item.publicUrl);
+      //   }
+      // }
+      // if (styleJSON_.glyphs) {
+      //   styleJSON_.glyphs = fixUrl(req, styleJSON_.glyphs, item.publicUrl);
+      // }
       return res.send(styleJSON_);
     });
 
